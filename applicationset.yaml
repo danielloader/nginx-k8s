@@ -3,6 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: nginx
+  namespace: argocd
 spec:
   goTemplate: true
   syncPolicy:
@@ -16,24 +17,20 @@ spec:
     metadata:
       name: nginx
     spec:
-      project: addons
-      sources:
-        - repoURL: 'https://github.com/danielloader/nginx-k8s'
-          targetRevision: 'HEAD'
-          ref: values
-        - chart: 'nginx'
-          repoURL: 'https://github.com/danielloader/nginx-k8s'
-          targetRevision: 'HEAD'
-          path: charts
-          helm:
-            releaseName: 'nginx'
-            ignoreMissingValueFiles: true
-            valueFiles:
-              - $values/values/default.yaml
-            valuesObject: {}
+      project: default
+      source:
+        repoURL: 'https://github.com/danielloader/nginx-k8s.git'
+        targetRevision: 'HEAD'
+        path: charts/nginx
+        helm:
+          releaseName: 'nginx'
+          ignoreMissingValueFiles: true
+          valueFiles:
+            - $values/values/default.yaml
+          valuesObject: {}
       destination:
         namespace: 'nginx'
-        name: 'default'
+        name: 'in-cluster'
       syncPolicy:
         automated: {}
         syncOptions:
