@@ -20,15 +20,12 @@ spec:
       sources:
         - repoURL: 'https://github.com/danielloader/nginx-k8s.git'
           targetRevision: 'HEAD'
-          ref: values
-        - repoURL: 'https://github.com/danielloader/nginx-k8s.git'
-          targetRevision: 'HEAD'
           path: charts/nginx
           helm:
             releaseName: 'nginx'
-            ignoreMissingValueFiles: true
+            ignoreMissingValueFiles: false
             valueFiles:
-              - $values/values/default.yaml
+              - values/default.yaml
             valuesObject:
               podAnnotations: 
                 test: value2 # overrides value in values/default.yaml
