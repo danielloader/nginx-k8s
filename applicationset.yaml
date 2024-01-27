@@ -11,8 +11,7 @@ spec:
   generators:
     - list:
         elements:
-        - cluster: engineering-dev
-          url: https://1.2.3.4
+        - cluster: local-dev
   template:
     metadata:
       name: nginx
@@ -29,7 +28,7 @@ spec:
             - $values/values/default.yaml
           valuesObject:
             podAnnotations: 
-              test: value2
+              test: value2 # overrides value in values/default.yaml
       destination:
         namespace: 'nginx'
         name: 'in-cluster'
