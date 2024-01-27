@@ -1,3 +1,3 @@
 podAnnotations: 
   test: label # default value
-  cluster: '{{.cluster}}' # attempted templating in a valuesFile referenced file
+  clusterFromValuesFile: '{{.cluster}}' # attempted templating in a valuesFile referenced file
