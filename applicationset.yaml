@@ -27,7 +27,9 @@ spec:
           ignoreMissingValueFiles: true
           valueFiles:
             - $values/values/default.yaml
-          valuesObject: {}
+          valuesObject:
+            podAnnotations: 
+              test: value2
       destination:
         namespace: 'nginx'
         name: 'in-cluster'
