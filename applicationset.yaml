@@ -17,18 +17,18 @@ spec:
       name: nginx
     spec:
       project: default
-      sources:
-        - repoURL: 'https://github.com/danielloader/nginx-k8s.git'
-          targetRevision: 'HEAD'
-          path: charts/nginx
-          helm:
-            releaseName: 'nginx'
-            ignoreMissingValueFiles: false
-            valueFiles:
-              - values/default.yaml
-            valuesObject:
-              podAnnotations: 
-                test: value2 # overrides value in values/default.yaml
+      source:
+        repoURL: 'https://github.com/danielloader/nginx-k8s.git'
+        targetRevision: 'HEAD'
+        path: charts/nginx
+        helm:
+          releaseName: 'nginx'
+          ignoreMissingValueFiles: false
+          valueFiles:
+            - values/default.yaml
+          valuesObject:
+            podAnnotations: 
+              test: value2 # overrides value in values/default.yaml
       destination:
         namespace: 'nginx'
         name: 'in-cluster'
