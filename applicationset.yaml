@@ -28,7 +28,8 @@ spec:
             - values/default.yaml
           valuesObject:
             podAnnotations: 
-              test: value2 # overrides value in values/default.yaml
+              test: value # overrides value in values/default.yaml
+              clusterFromObject: '{{.cluster}}' # check templating works at all
       destination:
         namespace: 'nginx'
         name: 'in-cluster'
